@@ -35,6 +35,18 @@ Parameters:
     Default: 10.192.21.0/24
 
 Resources:
+  PythonAppRepository:
+    Type: AWS::ECR::Repository
+
+  CurlAppRepository:
+    Type: AWS::ECR::Repository
+
+
+  # ECSCluster:
+  #   Type: AWS::ECS::Cluster
+  #   Properties:
+  #     ClusterName: appmesh-service-discovery
+
   VPC:
     Type: AWS::EC2::VPC
     Properties:
@@ -334,3 +346,15 @@ Outputs:
   ContainerSecurityGroup:
     Description: Containers security group
     Value: !Ref ContainerSecurityGroup
+
+  # EcsClusterName:
+  #   Description: Name of the ECS Cluster
+  #   Value: !Ref ECSCluster
+
+  CurlEcrRepo:
+    Description: ECR Repository for curl-app
+    Value: !Sub ${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${CurlAppRepository}
+  
+  PythonEcrRepo:
+    Description: ECR Repository for python-app
+    Value: !Sub ${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${PythonAppRepository}
