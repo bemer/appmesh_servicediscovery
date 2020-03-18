@@ -6,7 +6,7 @@
 
    ],
    "cpu":"256",
-   "executionRoleArn":"arn:aws:iam::743088214495:role/appmesh-service-discovery-ECSServiceRole-QCGCUSJGD8YD",
+   "executionRoleArn":"arn:aws:iam::XXXXXXXXXXXX:role/appmesh-service-discovery-ECSServiceRole",
    "proxyConfiguration":{
       "containerName":"envoy",
       "type":"APPMESH",
@@ -39,7 +39,7 @@
    "requiresCompatibilities":[
       "FARGATE"
    ],
-   "taskRoleArn":"arn:aws:iam::743088214495:role/appmesh-service-discovery-ECSTaskRole-CCXIEGUB4WKT",
+   "taskRoleArn":"arn:aws:iam::XXXXXXXXXXXX:role/appmesh-service-discovery-ECSTaskRole",
    "containerDefinitions":[
       {
          "dnsSearchDomains":[
@@ -69,7 +69,7 @@
             }
          ],
 
-         "image":"743088214495.dkr.ecr.us-east-1.amazonaws.com/curl-app:latest",
+         "image":"XXXXXXXXXXX.dkr.ecr.us-east-1.amazonaws.com/curl-app:latest",
          "logConfiguration":{
             "logDriver":"awslogs",
             "options":{
