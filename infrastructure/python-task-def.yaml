@@ -1,0 +1,193 @@
+{
+   "memory":"512",
+   "networkMode":"awsvpc",
+   "family":"python-app",
+   "placementConstraints":[
+
+   ],
+   "cpu":"256",
+   "executionRoleArn":"arn:aws:iam::743088214495:role/appmesh-service-discovery-ECSServiceRole-QCGCUSJGD8YD",
+   "proxyConfiguration":{
+      "containerName":"envoy",
+      "type":"APPMESH",
+      "properties":[
+         {
+            "name":"ProxyIngressPort",
+            "value":"15000"
+         },
+         {
+            "name":"AppPorts",
+            "value":"5000"
+         },
+         {
+            "name":"EgressIgnoredIPs",
+            "value":"169.254.170.2,169.254.169.254"
+         },
+         {
+            "name":"IgnoredUID",
+            "value":"1337"
+         },
+         {
+            "name":"ProxyEgressPort",
+            "value":"15001"
+         }
+      ]
+   },
+   "volumes":[
+
+   ],
+   "requiresCompatibilities":[
+      "FARGATE"
+   ],
+   "taskRoleArn":"arn:aws:iam::743088214495:role/appmesh-service-discovery-ECSTaskRole-CCXIEGUB4WKT",
+   "containerDefinitions":[
+      {
+         "dnsSearchDomains":[
+
+         ],
+         "environment":[
+
+         ],
+         "name":"python-service",
+         "links":[
+
+         ],
+         "mountPoints":[
+
+         ],
+         "secrets":[
+
+         ],
+         "image":"743088214495.dkr.ecr.us-east-1.amazonaws.com/python-app:latest",
+        "logConfiguration":{
+            "logDriver":"awslogs",
+            "options":{
+               "awslogs-create-group":"true",
+               "awslogs-region":"us-east-1",
+               "awslogs-stream-prefix":"fargate",
+               "awslogs-group":"appmesh-service-discovery-python-app"
+            }
+         },
+
+         "systemControls":[
+
+         ],
+         "dockerLabels":{
+
+         },
+         "cpu":0,
+         "portMappings":[
+            {
+               "protocol":"tcp",
+               "containerPort":5000,
+               "hostPort":5000
+            }
+         ],
+         "dnsServers":[
+
+         ],
+         "dockerSecurityOptions":[
+
+         ],
+         "entryPoint":[
+
+         ],
+         "ulimits":[
+
+         ],
+         "dependsOn":[
+            {
+               "containerName":"envoy",
+               "condition":"HEALTHY"
+            }
+         ],
+         "command":[
+
+         ],
+         "extraHosts":[
+
+         ],
+         "essential":true,
+         "volumesFrom":[
+
+         ]
+      },
+      {
+         "environment":[
+            {
+               "name":"APPMESH_VIRTUAL_NODE_NAME",
+               "value":"mesh/appmesh-service-discovery/virtualNode/python-sd"
+            },
+            {
+               "name":"ENABLE_ENVOY_XRAY_TRACING",
+               "value":"1"
+            }
+
+         ],
+         "name":"envoy",
+         "mountPoints":[
+
+         ],
+         "healthCheck":{
+            "retries":3,
+            "interval":5,
+            "command":[
+               "CMD-SHELL",
+               "curl -s http://localhost:9901/server_info | grep state | grep -q LIVE"
+            ],
+            "startPeriod":10,
+            "timeout":2
+         },
+         "image":"840364872350.dkr.ecr.us-east-1.amazonaws.com/aws-appmesh-envoy:v1.13.1.1-prod",
+         "cpu":0,
+         "portMappings":[
+
+         ],
+         "logConfiguration":{
+            "logDriver":"awslogs",
+            "options":{
+               "awslogs-create-group":"true",
+               "awslogs-region":"us-east-1",
+               "awslogs-stream-prefix":"fargate",
+               "awslogs-group":"appmesh-service-discovery-python-envoy"
+            }
+         },
+         "user":"1337",
+         "essential":true,
+         "volumesFrom":[
+
+         ]
+      },
+    {
+         "image":"amazon/aws-xray-daemon",
+         "logConfiguration": {
+            "logDriver": "awslogs", 
+            "options": {
+                "awslogs-create-group": "true", 
+                "awslogs-region": "us-east-1", 
+                "awslogs-stream-prefix": "fargate", 
+                "awslogs-group": "appmesh-service-discovery-python-xray"
+             }
+         }, 
+         "essential":true,
+         "name":"xray",
+         "portMappings":[
+            {
+               "hostPort":2000,
+               "protocol":"udp",
+               "containerPort":2000
+            }
+         ],
+         "healthCheck":{
+            "retries":3,
+            "command":[
+               "CMD-SHELL",
+               "timeout 1 /bin/bash -c \"</dev/udp/localhost/2000\""
+            ],
+            "timeout":2,
+            "interval":5,
+            "startPeriod":10
+         }
+      }
+   ]
+}
