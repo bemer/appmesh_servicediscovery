@@ -42,10 +42,10 @@ Resources:
     Type: AWS::ECR::Repository
 
 
-  # ECSCluster:
-  #   Type: AWS::ECS::Cluster
-  #   Properties:
-  #     ClusterName: appmesh-service-discovery
+   ECSCluster:
+     Type: AWS::ECS::Cluster
+     Properties:
+       ClusterName: appmesh-service-discovery
 
   VPC:
     Type: AWS::EC2::VPC
@@ -347,9 +347,9 @@ Outputs:
     Description: Containers security group
     Value: !Ref ContainerSecurityGroup
 
-  # EcsClusterName:
-  #   Description: Name of the ECS Cluster
-  #   Value: !Ref ECSCluster
+  EcsClusterName:
+     Description: Name of the ECS Cluster
+     Value: !Ref ECSCluster
 
   CurlEcrRepo:
     Description: ECR Repository for curl-app
