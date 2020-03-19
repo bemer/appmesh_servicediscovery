@@ -50,4 +50,4 @@ jq --arg PythonAppImage "$PythonAppImage" '.containerDefinitions[0].image = $Pyt
 
 jq --arg ECSServiceRole "$ECSServiceRole" '.executionRoleArn = $ECSServiceRole' infrastructure/curl-task-def.json|sponge infrastructure/curl-task-def.json
 jq --arg ECSTaskRole "$ECSTaskRole" '.taskRoleArn = $ECSTaskRole' infrastructure/curl-task-def.json|sponge infrastructure/curl-task-def.json
-jq --arg CurlAppImage "CurlAppImage" '.containerDefinitions[0].image = CurlAppImage' infrastructure/curl-task-def.json|sponge infrastructure/curl-task-def.json
+jq --arg CurlAppImage "$CurlAppImage" '.containerDefinitions[0].image = $CurlAppImage' infrastructure/curl-task-def.json|sponge infrastructure/curl-task-def.json
