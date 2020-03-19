@@ -42,10 +42,10 @@ Resources:
     Type: AWS::ECR::Repository
 
 
-   ECSCluster:
-     Type: AWS::ECS::Cluster
-     Properties:
-       ClusterName: appmesh-service-discovery
+  ECSCluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: appmesh-service-discovery
 
   VPC:
     Type: AWS::EC2::VPC
