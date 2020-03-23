@@ -32,10 +32,10 @@ $(aws ecr get-login --no-include-email)
 PythonEcrRepo=$(jq < cfn-output.json -r '.PythonEcrRepo');
 CurlEcrRepo=$(jq < cfn-output.json -r '.CurlEcrRepo');
 
-docker tag curl-app:latest $PythonEcrRepo:latest
+docker tag python-app:latest $PythonEcrRepo:latest
 docker push $PythonEcrRepo:latest
 
-docker tag python-app:latest $CurlEcrRepo:latest
+docker tag curl-app:latest $CurlEcrRepo:latest
 docker push $CurlEcrRepo:latest
 
 echo "Creating Task Definition files..."
