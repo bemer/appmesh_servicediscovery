@@ -53,4 +53,4 @@ jq --arg AwsStackRegion "$AwsStackRegion" '.containerDefinitions[].logConfigurat
 jq --arg ECSServiceRole "$ECSServiceRole" '.executionRoleArn = $ECSServiceRole' infrastructure/curl-task-def.json|sponge infrastructure/curl-task-def.json
 jq --arg ECSTaskRole "$ECSTaskRole" '.taskRoleArn = $ECSTaskRole' infrastructure/curl-task-def.json|sponge infrastructure/curl-task-def.json
 jq --arg CurlAppImage "$CurlAppImage" '.containerDefinitions[0].image = $CurlAppImage' infrastructure/curl-task-def.json|sponge infrastructure/curl-task-def.json
-jq --arg AwsStackRegion "$AwsStackRegion" '.containerDefinitions[].logConfiguration.options["awslogs-region"] = $AwsStackRegion' infrastructure/curl-task-def.json|sponge infrastructure/python-task-def.json
+jq --arg AwsStackRegion "$AwsStackRegion" '.containerDefinitions[].logConfiguration.options["awslogs-region"] = $AwsStackRegion' infrastructure/curl-task-def.json|sponge infrastructure/curl-task-def.json
