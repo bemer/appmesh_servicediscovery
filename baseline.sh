@@ -43,11 +43,14 @@ ECSServiceRole=$(jq < cfn-output.json -r '.ECSServiceRole');
 ECSTaskRole=$(jq < cfn-output.json -r '.ECSTaskRole');
 PythonAppImage=$(jq < cfn-output.json -r '.PythonEcrRepo')':latest';
 CurlAppImage=$(jq < cfn-output.json -r '.CurlEcrRepo')':latest';
+AwsStackRegion=$(jq < cfn-output.json -r '.StackRegion');
 
 jq --arg ECSServiceRole "$ECSServiceRole" '.executionRoleArn = $ECSServiceRole' infrastructure/python-task-def.json|sponge infrastructure/python-task-def.json
 jq --arg ECSTaskRole "$ECSTaskRole" '.taskRoleArn = $ECSTaskRole' infrastructure/python-task-def.json|sponge infrastructure/python-task-def.json
 jq --arg PythonAppImage "$PythonAppImage" '.containerDefinitions[0].image = $PythonAppImage' infrastructure/python-task-def.json|sponge infrastructure/python-task-def.json
+jq --arg AwsStackRegion "$AwsStackRegion" '.containerDefinitions[].logConfiguration.options["awslogs-region"] = $AwsStackRegion' infrastructure/python-task-def.json|sponge infrastructure/python-task-def.json
 
 jq --arg ECSServiceRole "$ECSServiceRole" '.executionRoleArn = $ECSServiceRole' infrastructure/curl-task-def.json|sponge infrastructure/curl-task-def.json
 jq --arg ECSTaskRole "$ECSTaskRole" '.taskRoleArn = $ECSTaskRole' infrastructure/curl-task-def.json|sponge infrastructure/curl-task-def.json
 jq --arg CurlAppImage "$CurlAppImage" '.containerDefinitions[0].image = $CurlAppImage' infrastructure/curl-task-def.json|sponge infrastructure/curl-task-def.json
+jq --arg AwsStackRegion "$AwsStackRegion" '.containerDefinitions[].logConfiguration.options["awslogs-region"] = $AwsStackRegion' infrastructure/curl-task-def.json|sponge infrastructure/python-task-def.json

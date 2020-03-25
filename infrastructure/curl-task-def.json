@@ -74,7 +74,7 @@
             "logDriver":"awslogs",
             "options":{
                "awslogs-create-group":"true",
-               "awslogs-region":"us-east-1",
+               "awslogs-region":"xx-xxxx-x",
                "awslogs-stream-prefix":"fargate",
                "awslogs-group":"appmesh-service-discovery-curl-app"
             }
@@ -151,7 +151,7 @@
             "logDriver":"awslogs",
             "options":{
                "awslogs-create-group":"true",
-               "awslogs-region":"us-east-1",
+               "awslogs-region":"xx-xxxx-x",
                "awslogs-stream-prefix":"fargate",
                "awslogs-group":"appmesh-service-discovery-curl-envoy"
             }
@@ -168,7 +168,7 @@
             "logDriver": "awslogs", 
             "options": {
                 "awslogs-create-group": "true", 
-                "awslogs-region": "us-east-1", 
+                "awslogs-region": "xx-xxxx-x", 
                 "awslogs-stream-prefix": "fargate", 
                 "awslogs-group": "appmesh-service-discovery-curl-xray"
              }

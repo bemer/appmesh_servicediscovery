@@ -358,3 +358,7 @@ Outputs:
   PythonEcrRepo:
     Description: ECR Repository for python-app
     Value: !Sub ${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${PythonAppRepository}
+    
+  StackRegion:
+    Description: Region used for this deployment
+    Value: !Ref "AWS::Region"
