@@ -25,5 +25,11 @@ app = Flask(__name__)
 @app.route("/")
 def hello():
     return "Server IP Address is: %s \n" % private_ip
+
+@app.route("/health")
+def health_check():
+    return "It works \n"
+
+    
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int("5000"), debug=True)
