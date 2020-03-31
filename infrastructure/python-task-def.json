@@ -43,6 +43,16 @@
       "name": "python-service",
       "links": [],
       "mountPoints": [],
+      "healthCheck": {
+        "retries": 3,
+        "interval": 5,
+        "command": [
+          "CMD-SHELL",
+          "curl -s http://localhost:5000/health || exit 1"
+        ],
+        "startPeriod": 10,
+        "timeout": 2
+      },
       "secrets": [],
       "image": "XXXXXXXXXXXX.dkr.ecr.us-east-1.amazonaws.com/appme-pytho:latest",
       "logConfiguration": {
