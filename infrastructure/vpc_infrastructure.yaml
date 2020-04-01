@@ -362,3 +362,7 @@ Outputs:
   StackRegion:
     Description: Region used for this deployment
     Value: !Ref "AWS::Region"
+
+  StackName:
+    Description: Name of this stack to be used in the cleanup process
+    Value: !Sub ${AWS::StackName}
