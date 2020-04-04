@@ -11,4 +11,4 @@ source ~/.bash_profile
 
 # Install awscli
 pip3 install awscli --upgrade --user
-souce ~/.bash_profile
+source ~/.bash_profile
