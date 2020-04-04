@@ -5,9 +5,9 @@ sudo yum update
 sudo yum install jq moreutils -y
 
 # Upgrade pip
-curl -O https://bootstrap.pypa.io/get-pip.py
-python get-pip.py --user
-rm get-pip.py
+sudo pip3 install --upgrade pip
+echo "export PATH=~/.local/bin:$PATH" >> ~/.bash_profile
+source ~/.bash_profile
 
 # Install awscli
-install awscli --upgrade --user
+pip3 install awscli --upgrade --user
