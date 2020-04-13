@@ -46,6 +46,10 @@ Resources:
     Type: AWS::ECS::Cluster
     Properties:
       ClusterName: appmesh-service-discovery
+      ClusterSettings:
+        - Name: containerInsights
+          Value: enabled
+
 
   VPC:
     Type: AWS::EC2::VPC
