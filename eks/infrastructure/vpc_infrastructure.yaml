@@ -236,11 +236,11 @@ Outputs:
 
   FrontendEcrRepo:
     Description: ECR Repository for the Frontend app
-    Value: !Sub ${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${BackendAppRepository}
+    Value: !Sub ${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${FrontendAppRepository}
   
   BackendEcrRepo:
     Description: ECR Repository for the Backend app
-    Value: !Sub ${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${FrontendAppRepository}
+    Value: !Sub ${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${BackendAppRepository}
     
   StackRegion:
     Description: Region used for this deployment
