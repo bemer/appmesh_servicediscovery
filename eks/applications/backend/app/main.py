@@ -1,5 +1,5 @@
-from flask import Flask
-from flask import jsonify
+from flask import Flask, jsonify
+from flask_api import status
 import random
 
 FEATURES_FILE = "./features.txt" # quote file
@@ -32,6 +32,13 @@ def feature():
 @app.errorhandler(404)
 def page_not_found(e):
     return jsonify({"message": "Resource not found"}), 404
+
+# Health check path
+@app.route("/health")
+def health():
+    content = {'Status': 'ok'}
+    return content, status.HTTP_200_OK
+
 
 if __name__ == '__main__':
     loadFeatures() # load features

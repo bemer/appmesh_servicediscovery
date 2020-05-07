@@ -1,7 +1,5 @@
-from flask import Flask
-from flask import render_template
-from flask import Response
-from flask import jsonify
+from flask import Flask, render_template, Response, jsonify
+from flask_api import status
 import requests
 import os
 
@@ -14,18 +12,15 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
     
-person = {'by': 'Alice', 'feature': 1986}
-
-
-# @app.route("/api/feature")
-# def about():
-#     return jsonify(person)
-
 @app.route("/api/feature")
-def about():
-    x = requests.get("http://%s:5000/api/feature" % (backend_url))
-    # x = requests.get(backend_url)
-    return jsonify(x.json())
+def api():
+    response = requests.get("http://%s:5000/api/feature" % (backend_url))
+    return jsonify(response.json())
+
+@app.route("/health")
+def health():
+    content = {'Status': 'ok'}
+    return content, status.HTTP_200_OK
 
 
 if __name__ == '__main__':
