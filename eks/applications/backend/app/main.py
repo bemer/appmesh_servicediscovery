@@ -1,6 +1,12 @@
 from flask import Flask, jsonify
 from flask_api import status
+import os
 import random
+
+
+hostname = os.getenv('HOSTNAME')
+
+
 
 FEATURES_FILE = "./features.txt" # quote file
 features = [] # stores all feature
@@ -26,7 +32,7 @@ app = Flask(__name__)
 @app.route("/api/feature")
 def feature():
     q = random.choice(features) # selects a random quote from file
-    return jsonify({"feature": q.feature, "by": q.title}) # return a quote
+    return jsonify({"feature": q.feature, "by": q.title, "from": hostname}) # return a quote
 
 # 404 Error for unknown routes
 @app.errorhandler(404)

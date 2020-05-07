@@ -13,7 +13,7 @@ $(document).ready(function () {
                 console.log(data)
                 $("#feature").removeClass('is-danger')
                 $("#feature").addClass('is-link')
-                $("#feature").html('</b>' + data.feature + '</b></br>' + data.by);
+                $("#feature").html('<b>' + data.feature + '</b></br>' + data.by + '</br><br>' + "Response from: " + data.from);
             },
             type: 'GET'
         })
