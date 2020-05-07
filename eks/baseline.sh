@@ -9,7 +9,7 @@ ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
 echo "Deploying CloudFormation template..."
 
 aws cloudformation deploy \
---template-file infrastructure_eks/vpc_infrastructure.yaml \
+--template-file infrastructure/vpc_infrastructure.yaml \
 --stack-name appmesh-service-discovery-eks \
 --capabilities CAPABILITY_IAM
 
