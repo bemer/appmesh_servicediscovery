@@ -205,15 +205,15 @@ Resources:
       SubnetId: !Ref PrivateSubnet2
 
   NodesSDPolicy:
-  Type: 'AWS::IAM::Policy'
-  Properties:
-    PolicyName: appmesh-cloumap-blog-policy
-    PolicyDocument:
-      Version: 2012-10-17
-      Statement:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: appmesh-servicediscovery-blog
+      PolicyDocument:
+        Statement:
         - Effect: Allow
-          Action:
-            - 'servicediscovery:UpdateInstanceCustomHealthStatus'
+          Action: [
+            'servicediscovery:UpdateInstanceCustomHealthStatus'
+            ]
           Resource: '*'
 
 Outputs:
