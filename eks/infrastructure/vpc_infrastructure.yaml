@@ -204,10 +204,10 @@ Resources:
       RouteTableId: !Ref PrivateRouteTable2
       SubnetId: !Ref PrivateSubnet2
 
-  WorkerNodesSDPolicy:
+  NodesSDPolicy:
   Type: 'AWS::IAM::Policy'
   Properties:
-    PolicyName: !Sub ${AWS::StackName}-policy
+    PolicyName: appmesh-cloumap-blog-policy
     PolicyDocument:
       Version: 2012-10-17
       Statement:
@@ -260,9 +260,9 @@ Outputs:
     Description: Region used for this deployment
     Value: !Ref "AWS::Region"
 
-  WorkerNodesSDPolicy:
+  NodesSDPolicy:
       Description: Region used for this deployment
-      Value: !Ref WorkerNodesSDPolicy
+      Value: !Ref NodesSDPolicy
 
   StackName:
     Description: Name of this stack to be used in the cleanup process
