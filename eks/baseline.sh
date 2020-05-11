@@ -16,7 +16,7 @@ aws cloudformation deploy \
 echo "Getting CloudFormation outputs..."
 
 aws cloudformation describe-stacks \
-    --stack-name appmesh-service-discovery | \
+    --stack-name appmesh-service-discovery-eks | \
 jq -r '[.Stacks[0].Outputs[] | {key: .OutputKey, value: .OutputValue}] | from_entries' > cfn-output.json 
 
 echo "Building Docker images..."
