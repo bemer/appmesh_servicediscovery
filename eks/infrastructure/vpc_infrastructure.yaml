@@ -274,8 +274,8 @@ Outputs:
     Value: !Ref "AWS::Region"
 
   NodesSDRole:
-      Description: Region used for this deployment
-      Value: !Ref NodeSDRole
+      Description: IAM Role that will be added to the worker nodes
+      Value:  Fn::GetAtt: [ NodeSDRole, arn ]
 
   StackName:
     Description: Name of this stack to be used in the cleanup process
