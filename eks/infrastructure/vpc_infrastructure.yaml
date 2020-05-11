@@ -204,10 +204,10 @@ Resources:
       RouteTableId: !Ref PrivateRouteTable2
       SubnetId: !Ref PrivateSubnet2
 
-  servicediscovery:UpdateInstanceCustomHealthStatus:
+  WorkerNodesSDPolicy:
   Type: 'AWS::IAM::Policy'
   Properties:
-    PolicyName: ${AWS::StackName}-policy
+    PolicyName: !Sub ${AWS::StackName}-policy
     PolicyDocument:
       Version: 2012-10-17
       Statement:
@@ -259,6 +259,10 @@ Outputs:
   StackRegion:
     Description: Region used for this deployment
     Value: !Ref "AWS::Region"
+
+  WorkerNodesSDPolicy:
+      Description: Region used for this deployment
+      Value: !Ref WorkerNodesSDPolicy
 
   StackName:
     Description: Name of this stack to be used in the cleanup process
