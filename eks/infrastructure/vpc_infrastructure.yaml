@@ -204,6 +204,20 @@ Resources:
       RouteTableId: !Ref PrivateRouteTable2
       SubnetId: !Ref PrivateSubnet2
 
+  NodeSDRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - ec2.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: "/"
+  
   NodesSDPolicy:
     Type: AWS::IAM::Policy
     Properties:
@@ -215,6 +229,8 @@ Resources:
             'servicediscovery:UpdateInstanceCustomHealthStatus'
             ]
           Resource: '*'
+      Roles:
+        - !Ref NodeSDRole
 
 Outputs:
   VPC:
@@ -257,9 +273,9 @@ Outputs:
     Description: Region used for this deployment
     Value: !Ref "AWS::Region"
 
-  NodesSDPolicy:
+  NodesSDRole:
       Description: Region used for this deployment
-      Value: !Ref NodesSDPolicy
+      Value: !Ref NodeSDRole
 
   StackName:
     Description: Name of this stack to be used in the cleanup process
