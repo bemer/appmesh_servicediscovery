@@ -275,7 +275,7 @@ Outputs:
 
   NodesSDRole:
       Description: IAM Role that will be added to the worker nodes
-      Value:  Fn::GetAtt: [ NodeSDRole, arn ]
+      Value:  !GetAtt [ NodeSDRole, Arn ]
 
   StackName:
     Description: Name of this stack to be used in the cleanup process
