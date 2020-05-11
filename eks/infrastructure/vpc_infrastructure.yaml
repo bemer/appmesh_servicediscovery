@@ -215,9 +215,6 @@ Resources:
           Action:
             - 'servicediscovery:UpdateInstanceCustomHealthStatus'
           Resource: '*'
-    Groups:
-      - !Ref CFNUserGroup
-
 
 Outputs:
   VPC:
