@@ -1,3 +1,4 @@
-# Delete EKS Cluster
+#!/bin/bash
 
+# Delete EKS Cluster
 eksctl delete cluster --name appmesh-service-discovery-eks

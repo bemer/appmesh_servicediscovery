@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Cleanup ECR Repositories
 FRONTEND_REPO=$(jq < cfn-output.json -r '.FrontendEcrRepo' | cut -d'/' -f2)
 BACKEND_REPO=$(jq < cfn-output.json -r '.BackendEcrRepo' | cut -d'/' -f2)
